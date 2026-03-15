@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory - Pharmacy Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Pharmacy Management System</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-medicine.html">Add Medicine</a></li>
+                <li><a href="sell-medicine.html">Sell Medicine</a></li>
+                <li><a href="inventory.html" class="active">Inventory</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="inventory-header">
+            <h1>Medicine Inventory</h1>
+            <div class="inventory-controls">
+                <input type="text" id="searchInventory" placeholder="Search medicines..." class="search-input">
+                <select id="filterCategory" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Capsule">Capsule</option>
+                    <option value="Syrup">Syrup</option>
+                    <option value="Injection">Injection</option>
+                    <option value="Cream">Cream</option>
+                    <option value="Drops">Drops</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button onclick="loadInventory()" class="btn btn-primary">Refresh</button>
+            </div>
+        </div>
+
+        <div class="inventory-stats">
+            <div class="stat-card">
+                <h4>Total Items</h4>
+                <p id="totalItems">0</p>
+            </div>
+            <div class="stat-card">
+                <h4>Total Value</h4>
+                <p id="totalValue">$0</p>
+            </div>
+            <div class="stat-card">
+                <h4>Low Stock Items</h4>
+                <p id="lowStockCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h4>Expiring Soon</h4>
+                <p id="expiringCount">0</p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Manufacturer</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit Medicine Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Medicine</h2>
+            <form id="editMedicineForm">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label for="editName">Medicine Name:</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCategory">Category:</label>
+                    <select id="editCategory" required>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Capsule">Capsule</option>
+                        <option value="Syrup">Syrup</option>
+                        <option value="Injection">Injection</option>
+                        <option value="Cream">Cream</option>
+                        <option value="Drops">Drops</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editManufacturer">Manufacturer:</label>
+                    <input type="text" id="editManufacturer" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editPrice">Price ($):</label>
+                        <input type="number" id="editPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editQuantity">Quantity:</label>
+                        <input type="number" id="editQuantity" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editExpiryDate">Expiry Date:</label>
+                    <input type="date" id="editExpiryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Description:</label>
+                    <textarea id="editDescription" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Update Medicine</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/inventory.js"></script>
+</body>
+</html>
