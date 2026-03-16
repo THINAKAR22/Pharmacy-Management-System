@@ -25,19 +25,19 @@
         <div class="dashboard-cards">
             <div class="card">
                 <h3>Total Medicines</h3>
-                <p id="totalMedicines" class="card-value">0</p>
+                <p id="totalMedicines" class="card-value">₹0</p>
             </div>
             <div class="card">
                 <h3>Low Stock Items</h3>
-                <p id="lowStockItems" class="card-value">0</p>
+                <p id="lowStockItems" class="card-value"> ₹0</p>
             </div>
             <div class="card">
                 <h3>Today's Sales</h3>
-                <p id="todaySales" class="card-value">$0</p>
+                 <p id="todaySales" class="card-value"> ₹0</p>
             </div>
             <div class="card">
                 <h3>Total Revenue</h3>
-                <p id="totalRevenue" class="card-value">$0</p>
+                <p id="totalRevenue" class="card-value">₹0</p>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
                 const salesResponse = await fetch('http://localhost:5000/api/sales/daily-summary');
                 const salesData = await salesResponse.json();
                 
-                document.getElementById('todaySales').textContent = `$${salesData.totalRevenue}`;
+                document.getElementById('todaySales').textContent = `₹${salesData.totalRevenue}`;
                 
                 // Load recent sales
                 const recentSalesResponse = await fetch('http://localhost:5000/api/sales');
@@ -109,7 +109,7 @@
 
                 // Calculate total revenue
                 const totalRevenue = recentSales.reduce((sum, sale) => sum + sale.totalAmount, 0);
-                document.getElementById('totalRevenue').textContent = `$${totalRevenue}`;
+                document.getElementById('totalRevenue').textContent = `₹${totalRevenue}`;
 
             } catch (error) {
                 console.error('Error loading dashboard:', error);
